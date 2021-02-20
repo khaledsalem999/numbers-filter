@@ -1,0 +1,54 @@
+<div class="container">
+  <form [formGroup]="customerQuery" class="filter-buttons">
+    <div>
+      <div>
+        <input type="radio" id="state-valid" formControlName="customerPhoneState" value="valid" (change)="changesState()">
+        <label for="state-valid">valid</label>
+        <input type="radio" id="state-invalid" formControlName="customerPhoneState" value="invalid" (change)="changesState()">
+        <label for="state-invalid">invalid</label>
+      </div>
+      <div class="country-buttons">
+        <input type="checkbox"
+               id="cameroon"
+               value="&cameroon"
+               (change)="formCountriesQueryString($event)">
+        <label for="cameroon">cameroon</label>
+        <input type="checkbox"
+               id="ethiopia"
+               value="&ethiopia"
+               (change)="formCountriesQueryString($event)">
+        <label for="ethiopia">ethiopia</label>
+        <input type="checkbox"
+               id="morocco"
+               value="&morocco"
+               (change)="formCountriesQueryString($event)">
+        <label for="morocco">morocco</label>
+        <input type="checkbox"
+               id="mozambique"
+               value="&mozambique"
+               (change)="formCountriesQueryString($event)">
+        <label for="mozambique">mozambique</label>
+        <input type="checkbox"
+               id="uganda"
+               value="&uganda"
+               (change)="formCountriesQueryString($event)">
+        <label for="uganda">uganda</label>
+      </div>
+    </div>
+  </form>
+  <table>
+    <tr>
+      <th>NAME</th>
+      <th>PHONE</th>
+    </tr>
+    <tr *ngFor="let customer of customers$">
+      <th>{{customer.name}}</th>
+      <th>{{customer.phone}}</th>
+    </tr>
+  </table>
+  <div class="page-buttons">
+    <button (click)="decrementPage()">< previous</button>
+    <span>{{this.page+1}}</span>
+    <button (click)="incrementPage()">next ></button>
+  </div>
+</div>

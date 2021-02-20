@@ -1,0 +1,41 @@
+.container{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 50%;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  margin-top: 50px;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+.page-buttons{
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.filter-buttons{
+  font-family: arial, sans-serif;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  margin-top: 50px;
+}
+
+.country-buttons{
+  margin-top: 10px;
+}

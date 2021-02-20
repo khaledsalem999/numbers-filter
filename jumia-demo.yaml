@@ -1,0 +1,20 @@
+apiVersion: skaffold/v1
+kind: Config
+build:
+  local:
+    push: false
+  artifacts:
+    - image: jumia-demo/backend
+      context: backend
+      jib: {}
+    - image: jumia-demo/frontend
+      context: frontend
+      docker:
+        dockerfile: skaffold.Dockerfile
+
+deploy:
+  statusCheckDeadlineSeconds: 240
+  kubectl:
+    manifests:
+      - backend/k8s.yaml
+      - frontend/k8s.yaml
