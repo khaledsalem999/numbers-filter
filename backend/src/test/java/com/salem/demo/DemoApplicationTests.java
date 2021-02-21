@@ -1,6 +1,7 @@
 package com.salem.demo;
 
 import com.salem.demo.entity.Customer;
+import com.salem.demo.enums.Country;
 import com.salem.demo.service.CustomerService;
 import com.salem.demo.util.PhonePattern;
 import org.junit.Assert;
@@ -42,7 +43,7 @@ class DemoApplicationTests {
 				customerService.getCustomersList("valid","cameroon",0,99);
 		Assert.assertFalse(cameroonList.isEmpty());
 		for (Customer customer: cameroonList){
-			Assert.assertTrue(phonePattern.cameroonPatternChecker(customer.getPhone()));
+			Assert.assertTrue(customer.getPhone().matches(Country.CAMEROON.regex));
 		}
 	}
 
@@ -51,8 +52,8 @@ class DemoApplicationTests {
 		List<Customer> cameroonAndEthiopiaList =
 				customerService.getCustomersList("valid","cameroon&ethiopia",0,99);
 		for (Customer customer: cameroonAndEthiopiaList){
-			Assert.assertTrue(phonePattern.cameroonPatternChecker(customer.getPhone())
-					|| phonePattern.ethiopiaPatternChecker(customer.getPhone()) );
+			Assert.assertTrue(customer.getPhone().matches(Country.CAMEROON.regex)
+					|| customer.getPhone().matches(Country.ETHIOPIA.regex));
 		}
 	}
 
@@ -61,8 +62,8 @@ class DemoApplicationTests {
 		List<Customer> cameroonAndEthiopiaInvalidList =
 				customerService.getCustomersList("invalid","cameroon&ethiopia",0,99);
 		for (Customer customer: cameroonAndEthiopiaInvalidList){
-			Assert.assertFalse(phonePattern.cameroonPatternChecker(customer.getPhone())
-					|| phonePattern.ethiopiaPatternChecker(customer.getPhone()) );
+			Assert.assertFalse(customer.getPhone().matches(Country.CAMEROON.regex)
+					|| customer.getPhone().matches(Country.ETHIOPIA.regex));
 		}
 	}
 
