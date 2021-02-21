@@ -3,10 +3,9 @@ package com.salem.demo;
 import com.salem.demo.entity.Customer;
 import com.salem.demo.enums.Country;
 import com.salem.demo.service.CustomerService;
-import com.salem.demo.util.PhonePattern;
+import com.salem.demo.util.FilterHandler;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -17,14 +16,14 @@ class DemoApplicationTests {
 
 	@Autowired
 	private CustomerService customerService;
-	private final PhonePattern phonePattern = new PhonePattern();
+	private final FilterHandler filterHandler = new FilterHandler();
 
 	@Test
 	void checkIfStateValidFilterWorking(){
 		List<Customer> validList = customerService.getCustomersList("valid",null,0,99);
 		Assert.assertFalse(validList.isEmpty());
 		for (Customer customer: validList) {
-			Assert.assertTrue(phonePattern.phonePatternValidityChecker(customer.getPhone()));
+			Assert.assertTrue(filterHandler.phonePatternValidityChecker(customer.getPhone()));
 		}
 	}
 
@@ -33,7 +32,7 @@ class DemoApplicationTests {
 		List<Customer> invalidList = customerService.getCustomersList("invalid",null,0,99);
 		Assert.assertFalse(invalidList.isEmpty());
 		for (Customer customer: invalidList) {
-			Assert.assertFalse(phonePattern.phonePatternValidityChecker(customer.getPhone()));
+			Assert.assertFalse(filterHandler.phonePatternValidityChecker(customer.getPhone()));
 		}
 	}
 
